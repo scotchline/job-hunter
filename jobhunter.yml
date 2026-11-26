@@ -1,0 +1,51 @@
+# jobhunter.yml — erstellt mit `python -m jobwatch init`.
+# Jeder Schlüssel ist in jobhunter.example.yml erklärt. Frei anpassen und
+# danach mit `python -m jobwatch check` prüfen.
+
+# ── 1. Wonach du suchst ─────────────────────────────────────────────────────
+search:
+  # Ein Stellentitel muss eines dieser Wörter enthalten (Gross/klein egal).
+  keywords: [UX/UI Desinger, UX-Desinger, UI-Designer, Brand Designer, Product Designer]
+  # ...und eines dieser, ausser mit --all. [] = jede Stufe.
+  seniority: []
+  # Titel mit diesen Wörtern nie anzeigen.
+  avoid: []
+  # Voll-Remote-Stellen im Land deiner Orte mitzählen.
+  remote_ok: true
+
+# ── 2. Wo ───────────────────────────────────────────────────────────────────
+locations:
+  - name: zurich
+    # Städte oder Regionen, in die du pendeln kannst. Normale Wörter.
+    places: [Zürich, Bern, Basel]
+    # Ein Inserat, das nur das Land nennt, zählt auch.
+    country: [Schweiz, Switzerland]
+    # Jobbörse jobs.ch, durchsucht mit deinen Stichwörtern an deinen Orten.
+    boards:
+      - board: jobs.ch
+        where: [Zürich, Bern, Basel]
+
+# ── 3. Firmen, die du beobachtest ───────────────────────────────────────────
+# Karriereseiten-URLs einfügen (Greenhouse, Lever, Ashby, Personio,
+# Teamtailor, Workday, ...) oder `python -m jobwatch add-company <url>`.
+companies: []
+
+# ── 4. Eigene Buchhaltung (bleibt in deinem privaten Repository) ──────────────────
+ruled_out: {}     # firma: grund        — wird ausgeblendet
+pending: {}       # firma: notiz        — wird markiert, nicht ausgeblendet
+applied: {}       # inserat-URL: notiz  — wird ausgeblendet
+
+# ── 5. Fakten, die kein Agent je raten darf ─────────────────────────────────
+profile:
+  notice: {months: 3, until: month_end}   # Kündigungsfrist; until: month_end | any_day
+  salary_expectation: ""       # Lohnvorstellung — entscheidest nur du
+  workload: "100%"             # Pensum
+  work_permit: ""          # Arbeitsbewilligung/Staatsbürgerschaft, nur wo relevant
+
+# Wer Bewerbungspakete entwirft: kopieren (Standard, gratis: Auftrag in einen Chat
+# wie claude.ai oder ChatGPT kopieren, Antwort mit /paket zurück), copilot-cli
+# (GitHub Copilot CLI in Actions, gratis mit Copilot Free, begrenzt), copilot
+# (Coding-Agent, ab Copilot Pro), claude (Secret ANTHROPIC_API_KEY) oder none
+# (lokal, ohne KI in GitHub).
+# Siehe docs/FORTGESCHRITTEN.md, Abschnitt «Was kostet das?».
+agent: kopieren
